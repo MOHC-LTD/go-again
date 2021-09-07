@@ -1,6 +1,6 @@
-# retrify
+# retry
 
-Package `retrify` provides functionality for retrying code.
+Package `retry` provides functionality for retrying code.
 
 ## Contents
 
@@ -13,7 +13,7 @@ Package `retrify` provides functionality for retrying code.
 Install the module using
 
 ```sh
-go get -u github.com/MOHC-LTD/retrify
+go get -u github.com/MOHC-LTD/go-again
 ```
 
 ## Usage
