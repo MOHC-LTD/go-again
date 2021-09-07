@@ -1,4 +1,4 @@
-module belgium/MOHC-LTD/go-again
+module github.com/MOHC-LTD/go-again
 
 go 1.16
 
