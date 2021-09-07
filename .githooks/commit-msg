@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Conventional commits
+commit_regex='(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|merge){1}(\([\w-])?(!)?:([\w ])+'
+
+if ! grep -iqE "$commit_regex" "$1"; then
+    printf "YOU MUST USE CONVENTIONAL COMMITS\n"
+    exit 1
+fi
