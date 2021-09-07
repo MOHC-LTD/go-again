@@ -1,11 +1,12 @@
 package retry_test
 
 import (
-	retry "belgium/MOHC-LTD/go-again"
 	"errors"
 	"fmt"
 	"testing"
 	"time"
+
+	retry "github.com/MOHC-LTD/go-again"
 )
 
 // Func test back off handler retries
