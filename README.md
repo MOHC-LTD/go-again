@@ -4,11 +4,11 @@ Package `retry` provides functionality for retrying code.
 
 ## Contents
 
-- [💻 Installation](#installation)
-- [✨‍ Usage](#usage)
-- [⚒️ How to contribute](#how-to-contribute)
+- [💻 Installation](#-installation)
+- [✨‍ Usage](#-usage)
+- [⚒️ How to contribute](#-how-to-contribute)
 
-## Installation
+## 💻 Installation
 
 Install the module using
 
@@ -16,7 +16,7 @@ Install the module using
 go get -u github.com/MOHC-LTD/go-again
 ```
 
-## Usage
+## ✨ Usage
 
 Use this package to retry code.
 
@@ -49,6 +49,6 @@ func (retrySomething RetrySomething) Do() error {
 }
 ```
 
-## How to contribute
+## ⚒ How to contribute
 
 Something missing or not working as expected? See our [contribution guide](./CONTRIBUTING.md).

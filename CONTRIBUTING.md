@@ -2,10 +2,10 @@
 
 ## Contents
 
-- [Git hooks](#-git-hooks)
-- [Committing and merging](#-committing-and-merging)
+- [⚓️ Git hooks](#-git-hooks)
+- [💬 Committing and merging](#-committing-and-merging)
 
-## 🪝 Git hooks
+## ⚓ Git hooks
 
 This project includes three git hooks
 
