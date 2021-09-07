@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	. "github.com/sethvargo/go-retry"
+	goretry "github.com/sethvargo/go-retry"
 )
 
 // Tryable function to retry, if an error is returned it will retry as specified by the config, if no error is returned, no further attempts will be made.
@@ -28,11 +28,11 @@ In the case of the proceeding example, assuming that `failingFunction` always fa
 
 Example:
 	err := retry.Configure().
-		goFirstRetryDelay(1 * time.Millisecond). 	// After the first attempt delay this amount of time.
-		WithMaxRetries(1). 							// Keep retrying this number of times.
-		OnAttemptFailure(errorHandler). 			// Every time a failure happens report it here.
-		WithFallBack(fallback). 					// If everything still failed then do this.
-		Try(failingFunction) 						// Terminal operator for the function to retry.
+		goFirstRetryDelay(1 * time.Millisecond).    // After the first attempt delay this amount of time.
+		WithMaxRetries(1).                          // Keep retrying this number of times.
+		OnAttemptFailure(errorHandler).             // Every time a failure happens report it here.
+		WithFallBack(fallback).                     // If everything still failed then do this.
+		Try(failingFunction)                        // Terminal operator for the function to retry.
 */
 type Specification struct {
 	fallback            Tryable       // The fallback function if all retries fail - Note: this can still produce an error.
@@ -56,13 +56,13 @@ func (s Specification) OnAttemptFailure(errorHandler ErrorFunc) Specification {
 
 // Try configures a function to be run multiple times when a failure occurs until a configured limit.
 func (s Specification) Try(functionToRetry Tryable) error {
-	fib, err := NewFibonacci(s.startDelay)
+	fib, err := goretry.NewFibonacci(s.startDelay)
 
 	if err != nil {
 		return errors.Wrap(err, "fibonacci start delay must be greater than 0, no attempt was made")
 	}
 
-	retrySpec := WithMaxRetries(s.maxRetries, fib)
+	retrySpec := goretry.WithMaxRetries(s.maxRetries, fib)
 
 	retryLibFunction := func(ctx context.Context) error {
 		err := functionToRetry()
@@ -80,10 +80,10 @@ func (s Specification) Try(functionToRetry Tryable) error {
 		if s.attemptErrorHandler != nil {
 			s.attemptErrorHandler(err)
 		}
-		return RetryableError(err)
+		return goretry.RetryableError(err)
 	}
 
-	err = Do(context.Background(), retrySpec, retryLibFunction)
+	err = goretry.Do(context.Background(), retrySpec, retryLibFunction)
 
 	if err != nil && s.fallback != nil {
 		err = errors.Wrap(s.fallback(), "error in fallback")
